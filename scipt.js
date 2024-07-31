@@ -113,6 +113,16 @@ function startOrPause(){
         } else {
             beepSong.play()
             clearInterval(interval);
+            temporizador = tempo
+            updateDisplay();
+            playBtText.innerText = 'Começar'
+            playBtImg.setAttribute('src', `imagens/play_arrow.png`)
+            
+            const focoAtivo = html.getAttribute('data-contexto') == 'foco'
+            if (focoAtivo) {
+                const evento = new CustomEvent('FocoFinalizado')
+                document.dispatchEvent(evento)
+            }
         }
     }, 1000);
 }
